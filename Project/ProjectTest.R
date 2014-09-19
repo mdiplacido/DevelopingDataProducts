@@ -5,6 +5,10 @@ scores <- read.csv("c:\\temp\\countrycache\\Scores")
 scoresMean <- mean(scores$Score)
 scoresStdDev <- sd(scores$Score)
 
+# TODO: looks like there is some garbage in the chords
+chords <- read.csv("c:\\temp\\countrycache\\Chords", header=F)
+chords <- chords[order(chords$V1),]
+
 generateNgramSequences <- function(sequence)
 {
    ngramLength <- 3
@@ -52,7 +56,25 @@ computeScore <- function(sequences)
     invisible(score)
 }
 
+# would be good to provide a list of chords that the model knows about...
+
+############################################
+# example chord sequence not common in country model
 input <- "C,G,D,E,F"
+input <- unlist(strsplit(input, ","))
+
+score <- computeScore(generateNgramSequences(input))
+numStdDev <- abs((score - scoresMean) / scoresStdDev)
+
+print(paste("Your score was:", round(score, 2)))
+print(paste(paste("Your score was", round(numStdDev, 2)), "standard deviations from the mean"))
+
+hist(scores$Score, xlim=c(0,min(score + 5, 100)), xlab="Score", main="Your score vs. the model")
+lines(c(score, score), c(0, 30), col="red", lwd=5)
+
+############################################
+# example common chord sequence
+input <- "D,C,G"
 input <- unlist(strsplit(input, ","))
 
 score <- computeScore(generateNgramSequences(input))

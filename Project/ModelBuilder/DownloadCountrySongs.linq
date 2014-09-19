@@ -87,12 +87,20 @@ void Main()
 		.ToArray()
 		.Dump();
 		
+	// get unique list of chords
+	var chords = work
+		.SelectMany((x) => GetChords(x.Result.Content))
+		.Distinct()
+		.ToArray()
+		.Dump();
+		
 	StringBuilder scores = new StringBuilder();
 	scores.AppendLine("Score");
 	scores.Append(string.Join(Environment.NewLine, scoredSongs.Select(x => x.Score.ToString("r"))));
 		
 	WriteCachedContent("Scores", scores.ToString());
 	WriteCachedContent("Map", MapAsString(sequenceMap));
+	WriteCachedContent("Chords", string.Join(Environment.NewLine, chords));
 }
 
 public static string MapAsString(IDictionary<string, NGramSequence> map)
