@@ -8,6 +8,7 @@ scoresStdDev <- sd(scores$Score)
 # TODO: looks like there is some garbage in the chords
 chords <- read.csv("c:\\temp\\countrycache\\Chords", header=F)
 chords <- chords[order(chords$V1),]
+chordsStr <- as.character(chords)
 
 generateNgramSequences <- function(sequence)
 {
