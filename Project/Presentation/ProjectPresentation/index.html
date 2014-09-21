@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Is My Song Country?</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Is My Song Country?">
+  <meta name="author" content="mdiplacido">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Is My Song Country?</h1>
+    <h2>A tool that can judge the chords in your song for &quot;countryness&quot;</h2>
+    <p>mdiplacido<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Motivation</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>I play guitar, and I wondered if I could write an app to judge my song chord sequences.</li>
+<li>Could I write a simple ShinyApp that could determine if my song uses country chord sequences?</li>
+<li>If you like country this app will give you a sense for how &quot;Country&quot; your chord sequences are</li>
+<li>If you don&#39;t like country then you can use this app to avoid country chord sequences</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>How it works</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Scrape 100+ popular country songs from <a href="http://www.countrytabs.com/">http://www.countrytabs.com/</a></li>
+<li>Learn a model for the sequences of chords per song</li>
+<li>For example a song could have the following chord sequences:
+
+<ul>
+<li>D -&gt; DaddC -&gt; Em7 -&gt; Gm+Bb -&gt; C -&gt; F -&gt; Esus4 -&gt; E</li>
+</ul></li>
+<li>The model would learn the following sequences:
+
+<ul>
+<li>D</li>
+<li>D -&gt; DaddC</li>
+<li>D -&gt; DaddC -&gt; Em7</li>
+<li>DaddC -&gt; Em7 -&gt; Gm+Bb</li>
+<li>Em7 -&gt; Gm+Bb -&gt; C</li>
+<li>Gm+Bb -&gt; C -&gt; F</li>
+<li>C -&gt; F -&gt; Esus4</li>
+<li>F -&gt; Esus4 -&gt; E</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Motivation'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='How it works'>
+         2
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
