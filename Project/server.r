@@ -100,9 +100,9 @@ shinyServer(
         
         output$scoreSummary <- renderUI({
           scoreTmp <- songScore()
-          firstLine <- paste("<p>Your score was:<strong>", round(scoreTmp, 2), "</strong></p>")
-          secondLine <- paste("<p>Your score was<strong>", round(scoreNumStdDev(), 2), "</strong>standard deviations from the mean song score")
-          return(HTML(paste(firstLine, secondLine)))
+          firstLine <- paste("<p>Your song score was:<strong>", round(scoreTmp, 2), "</strong></p>")
+          secondLine <- paste("<p>Your song score was<strong>", round(scoreNumStdDev(), 2), "</strong>standard deviations from the mean song score")
+          return(HTML(paste("<h3>Song Info:</h3>", firstLine, secondLine)))
         })
         
         output$songHist <- renderPlot({
