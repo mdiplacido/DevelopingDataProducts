@@ -51,18 +51,20 @@ and 100 is least like country (see next slide for example score distribution)
 
 ## Training set score distribution
 
+The following plot shows the training set score distribution which your song will be compared against.
+
 ```{r, echo=F, fig.width=12}
-scores <- read.csv("../../Scores")
+library(ggplot2)
+scores <- read.csv("../../Scores", header=T)
 scoresMean <- mean(scores$Score)
 
-hist(scores$Score,
-     xlab="Score", 
-     ylab="number of training songs", 
-     main="Training song score distribution\n(mean song score shown in blue)")
+ggplot(scores, aes(x=Score)) + 
+  geom_histogram(binwidth=.5, alpha=.7, colour="white") + 
+  geom_vline(aes(xintercept=c(scoresMean), linetype="Average country song"), size=1, colour="blue", show_guide = T) +
+  scale_linetype_manual("", values = 2) +
+  xlab("Score") + ylab("number of training songs") + 
+  ggtitle("Training song score distribution\n(average song score shown in blue)")
 
-lines(c(scoresMean, scoresMean), c(0, 30), col="blue", lwd=5)
-          
-legend("topright", c("Average country song"), fill=c("blue"))
 ```
 
 ---
@@ -73,6 +75,6 @@ legend("topright", c("Average country song"), fill=c("blue"))
 * Some ideas for making it better
   * Learn other music genres
   * After learning other genres could we ask each model for a score and the model with the lowest score determines the class? 
-  * eg. Country, Jazz, Rock, etc.
+      * eg. Country, Jazz, Rock, etc.
   * There is a lot of information loss when you just look at chord sequences, music has tempo, melody, time signatures, etc.  All of these features can contribute to the song genre.  Modeling these features seems like a good next step, but beyond the scope of this project.
 * try it out! https://mdiplacido.shinyapps.io/IsMySongCountry/
