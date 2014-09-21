@@ -91,6 +91,7 @@ void Main()
 	var chords = work
 		.SelectMany((x) => GetChords(x.Result.Content))
 		.Distinct()
+		.OrderBy(x => x)
 		.ToArray()
 		.Dump();
 		
@@ -142,6 +143,7 @@ public static IEnumerable<string> GetChords(string song)
 {
 	HtmlDocument doc = new HtmlDocument();
  	doc.LoadHtml(song);
+	var skipBadInput = new[] { "Verse 4", "N.C." };
 	return doc.DocumentNode
 		.SelectNodes("//a")
 		.Select(x => new { 
@@ -150,7 +152,19 @@ public static IEnumerable<string> GetChords(string song)
 			Class = x.Attributes.Contains("class") ? x.Attributes["class"].Value : string.Empty
 		})
 		.Where(x => x.Class == "chordlink")
-		.Select(x => x.InnerText);
+		.Select(x => x.InnerText)
+		.SelectMany(x => {
+			if (x == "Am/EFG")
+			{
+				// fixing this weird chord
+				return new[] { "Am/E", "F", "G" };
+			}
+			else
+			{
+				return new[] { x };
+			}
+		})
+		.Where(x => !skipBadInput.Contains(x));
 }
 
 public static IEnumerable<string> GetSongPaths(string index)
