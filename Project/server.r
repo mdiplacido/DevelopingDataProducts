@@ -1,6 +1,5 @@
 library(shiny)
-# install.packages("UsingR")
-# library(UsingR)
+library(ggplot2)
 
 map <- read.csv("Map", sep="\t")
 map$SequenceGroup <- as.factor(map$SequenceGroup)
@@ -10,7 +9,6 @@ scoresMean <- mean(scores$Score)
 scoresStdDev <- sd(scores$Score)
 scoresMax <- max(scores$Score)
 
-# TODO: looks like there is some garbage in the chords
 chords <- read.csv("Chords", header=F)
 chords <- chords[order(chords$V1),]
 chordsStr <- as.character(chords)
@@ -109,16 +107,25 @@ shinyServer(
         
         output$songHist <- renderPlot({
           scoreTmp <- songScore()
-          hist(scores$Score, 
-               xlim=c(0, max(scoreTmp + 1, scoresMax)), 
-               xlab="Score", 
-               ylab="number of songs", 
-               main="Your score vs. the model\n(mean song score shown in blue, your song is shown in red)")
-              
-          lines(c(scoresMean, scoresMean), c(0, 30), col="blue", lwd=5)
-          lines(c(scoreTmp, scoreTmp), c(0, 30), col="red", lwd=5)
+          scoresMeanTmp <- scoresMean
           
-          legend("topright", c("Average country song", "Your song"), fill=c("blue", "red"))
+          environmentTmp<-environment() 
+
+          cut1 <- data.frame(Songs="Average country song", vals=c(scoresMeanTmp))
+          cut2 <- data.frame(Songs="Your song", vals=c(scoreTmp))
+          cuts <- rbind(cut1,cut2)
+          
+          thePlot <- ggplot(scores, aes(x=Score), environment=environmentTmp) + 
+            geom_histogram(binwidth=.5, alpha=.7, colour="white") + 
+            geom_vline(data=cuts, aes(xintercept=vals, 
+                                      linetype=Songs,
+                                      colour = Songs),
+                       show_guide = TRUE, size=1.5) +
+
+            xlab("Score") + ylab("number of training songs") + 
+            ggtitle("Training song score distribution\n")
+          
+          return(thePlot)
         })
     }
   )
