@@ -51,6 +51,8 @@ and 100 is least like country (see next slide for example score distribution)
 
 ## Training set score distribution
 
+The following plot shows the training set score distribution which your song will be compared against.
+
 ![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1.png) 
 
 ---
@@ -61,6 +63,6 @@ and 100 is least like country (see next slide for example score distribution)
 * Some ideas for making it better
   * Learn other music genres
   * After learning other genres could we ask each model for a score and the model with the lowest score determines the class? 
-  * eg. Country, Jazz, Rock, etc.
+      * eg. Country, Jazz, Rock, etc.
   * There is a lot of information loss when you just look at chord sequences, music has tempo, melody, time signatures, etc.  All of these features can contribute to the song genre.  Modeling these features seems like a good next step, but beyond the scope of this project.
 * try it out! https://mdiplacido.shinyapps.io/IsMySongCountry/
