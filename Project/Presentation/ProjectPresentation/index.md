@@ -1,6 +1,6 @@
 ---
 title       : Is My Song Country?
-subtitle    : A tool that can judge the chords in your song for "countryness"
+subtitle    : A ShinyApp that can judge the chords in your song for "countryness"
 author      : mdiplacido
 job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
@@ -35,3 +35,32 @@ knit        : slidify::knit2slides
   * Gm+Bb -> C -> F
   * C -> F -> Esus4
   * F -> Esus4 -> E
+
+---
+  
+## How it works continued...
+
+* Now that we've learned all the sequences we can compute the frequency distribution of any given chord given the previous 2 chords
+* With this frequency distribution we can score the training set songs which should reveal a score distribution where 0 is the most like country
+and 100 is least like country (see next slide for example score distribution)
+* The ShinyApp can now use the model to:
+  1. Score the sequence of chords in your song
+  2. Compare your score to the scored training set songs
+
+---
+
+## Training set score distribution
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1.png) 
+
+---
+
+## Conclusion
+
+* This is a very naive implementation, but the spirit of the idea is hopefully compelling
+* Some ideas for making it better
+  * Learn other music genres
+  * After learning other genres could we ask each model for a score and the model with the lowest score determines the class? 
+  * eg. Country, Jazz, Rock, etc.
+  * There is a lot of information loss when you just look at chord sequences, music has tempo, melody, time signatures, etc.  All of these features can contribute to the song genre.  Modeling these features seems like a good next step, but beyond the scope of this project.
+* try it out! https://mdiplacido.shinyapps.io/IsMySongCountry/
