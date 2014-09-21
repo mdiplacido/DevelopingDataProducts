@@ -33,7 +33,7 @@
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
     <h1>Is My Song Country?</h1>
-    <h2>A tool that can judge the chords in your song for &quot;countryness&quot;</h2>
+    <h2>A ShinyApp that can judge the chords in your song for &quot;countryness&quot;</h2>
     <p>mdiplacido<br/></p>
   </hgroup>
   <article></article>  
@@ -88,6 +88,60 @@
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>How it works continued...</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Now that we&#39;ve learned all the sequences we can compute the frequency distribution of any given chord given the previous 2 chords</li>
+<li>With this frequency distribution we can score the training set songs which should reveal a score distribution where 0 is the most like country
+and 100 is least like country (see next slide for example score distribution)</li>
+<li>The ShinyApp can now use the model to:
+
+<ol>
+<li>Score the sequence of chords in your song</li>
+<li>Compare your score to the scored training set songs</li>
+</ol></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Training set score distribution</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Conclusion</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is a very naive implementation, but the spirit of the idea is hopefully compelling</li>
+<li>Some ideas for making it better
+
+<ul>
+<li>Learn other music genres</li>
+<li>After learning other genres could we ask each model for a score and the model with the lowest score determines the class? </li>
+<li>eg. Country, Jazz, Rock, etc.</li>
+<li>There is a lot of information loss when you just look at chord sequences, music has tempo, melody, time signatures, etc.  All of these features can contribute to the song genre.  Modeling these features seems like a good next step, but beyond the scope of this project.</li>
+</ul></li>
+<li>try it out! <a href="https://mdiplacido.shinyapps.io/IsMySongCountry/">https://mdiplacido.shinyapps.io/IsMySongCountry/</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -102,6 +156,24 @@
       <a href="#" target="_self" rel='tooltip' 
         data-slide=2 title='How it works'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How it works continued...'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Training set score distribution'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Conclusion'>
+         5
       </a>
     </li>
   </ul>
